@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('sequelize');
+const {Sequelize} = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const configPath = env === 'production' ? path.join(__dirname, '..', '..', '..',
@@ -10,7 +10,7 @@ const configPath = env === 'production' ? path.join(__dirname, '..', '..', '..',
 const config = require(configPath)[ env ];
 const db = {};
 
-
+console.log('config', config)
 
 const sequelize = new Sequelize(config.database, config.username,
   config.password, config);

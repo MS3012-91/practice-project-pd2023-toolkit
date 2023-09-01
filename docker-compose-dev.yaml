@@ -13,8 +13,6 @@ services:
       - /client/node_modules
     ports:
       - '5000:3000'
-    networks: 
-      - mynet
 
   server-dev:
     build:
@@ -22,15 +20,9 @@ services:
     depends_on:
       - db-dev
       - mongo-dev
-    networks: 
-      - mynet
+    restart: always
     environment:
       NODE_ENV: development
-      DB_HOST: db-dev
-      DB_PORT: 2345
-      DB_USER: postgres
-      DB_PASSWORD: password
-      DB_NAME: squadhelp-d
     ports:
       - '3000:3000'
     
@@ -44,8 +36,6 @@ services:
     image: mongo:4.4.6-bionic
     ports:
       - '27018:27017'
-    networks: 
-      - mynet
 
   db-dev:
     image: postgres:13.2-alpine
@@ -54,21 +44,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: squadhelp-d
-    volumes: 
-      - db:/var/lib/postgresql/data
-      - ./db-data/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
       - '2345:5432'
-    networks: 
-      - mynet
-
-networks:
-  mynet:
-    driver: bridge
 
 volumes:
-  db:
-    driver: local
-
-# volumes:
-#   server-dev:
+  server-dev:
