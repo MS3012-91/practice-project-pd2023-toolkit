@@ -6,6 +6,8 @@
 ./server/uploadFiles
 ./server/upload
 ./server/public
+./db-data
+
 
 ./server/public/images
 .server/public/images

@@ -10,6 +10,8 @@ const configPath = env === 'production' ? path.join(__dirname, '..', '..', '..',
 const config = require(configPath)[ env ];
 const db = {};
 
+
+
 const sequelize = new Sequelize(config.database, config.username,
   config.password, config);
 

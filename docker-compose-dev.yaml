@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   front-react:
     build:
       context: ./client
@@ -13,40 +12,63 @@ services:
       - ./client:/client
       - /client/node_modules
     ports:
-      - "5000:3000"
+      - '5000:3000'
+    networks: 
+      - mynet
 
   server-dev:
     build:
       context: ./server
-
-    environment:
-      NODE_ENV: development
-    ports:
-      - "3000:3000"
     depends_on:
       - db-dev
       - mongo-dev
+    networks: 
+      - mynet
+    environment:
+      NODE_ENV: development
+      DB_HOST: db-dev
+      DB_PORT: 2345
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: squadhelp-d
+    ports:
+      - '3000:3000'
+    
     volumes:
       - ./var/www/html/images:/var/www/html/images
       - ./server:/server
       - /server/node_modules
-
+    
 
   mongo-dev:
     image: mongo:4.4.6-bionic
     ports:
-      - "27017:27017"
-
-
+      - '27018:27017'
+    networks: 
+      - mynet
 
   db-dev:
     image: postgres:13.2-alpine
-    environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=todo-dev
+    restart: on-failure
+    environment:   
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: squadhelp-d
+    volumes: 
+      - db:/var/lib/postgresql/data
+      - ./db-data/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
-      - "5432:5432"
+      - '2345:5432'
+    networks: 
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
 
 volumes:
-  server-dev:
+  db:
+    driver: local
+
+# volumes:
+#   server-dev:
