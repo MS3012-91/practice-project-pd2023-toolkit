@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "postgres",
-    "password": "password",
+    "password": "31121991",
     "database": "squadhelp-d",
-    "host": "db-dev",
+    "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": "Op",
     "seederStorage": "sequelize"
