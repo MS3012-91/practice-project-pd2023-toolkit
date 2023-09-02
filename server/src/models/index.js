@@ -1,6 +1,5 @@
 
 const fs = require('fs');
-const { modelNames } = require('mongoose');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
@@ -26,9 +25,9 @@ fs
     db[ model.name ] = model;
   });
 
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
-    db[modelName].associate[db];
+    db[modelName].associate(db);
   }
 });
 
