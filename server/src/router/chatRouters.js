@@ -1,65 +1,34 @@
 const { Router } = require('express');
-const checkToken = require('../middlewares/checkToken');
 const chatController = require('../controllers/chatController');
 
 const chatRouter = Router();
 
-chatRouter.post(
-  '/newMessage',
-  checkToken.checkToken,
-  chatController.addMessage
-);
+chatRouter.post('/newMessage', chatController.addMessage);
 
-chatRouter.post('/getChat', checkToken.checkToken, chatController.getChat);
+//get
+chatRouter.post('/getChat', chatController.getChat);
 
-chatRouter.post(
-  '/getPreview',
-  checkToken.checkToken,
-  chatController.getPreview
-);
+//get
+chatRouter.post('/getPreview', chatController.getPreview);
 
-chatRouter.post('/blackList', checkToken.checkToken, chatController.blackList);
+//get+post+del
+chatRouter.post('/blackList', chatController.blackList);
+//get+post+del
+chatRouter.post('/favorite', chatController.favoriteChat);
 
-chatRouter.post(
-  '/favorite',
-  checkToken.checkToken,
-  chatController.favoriteChat
-);
-
-chatRouter.post(
-  '/createCatalog',
-  checkToken.checkToken,
-  chatController.createCatalog
-);
-
-chatRouter.post(
-  '/updateNameCatalog',
-  checkToken.checkToken,
-  chatController.updateNameCatalog
-);
-
-chatRouter.post(
-  '/addNewChatToCatalog',
-  checkToken.checkToken,
-  chatController.addNewChatToCatalog
-);
-
-chatRouter.post(
-  '/removeChatFromCatalog',
-  checkToken.checkToken,
-  chatController.removeChatFromCatalog
-);
-
-chatRouter.post(
-  '/deleteCatalog',
-  checkToken.checkToken,
-  chatController.deleteCatalog
-);
-
-chatRouter.post(
-  '/getCatalogs',
-  checkToken.checkToken,
-  chatController.getCatalogs
-);
+//get+post+del
+chatRouter.post('/createCatalog', chatController.createCatalog);
+//update
+chatRouter.post('/updateNameCatalog', chatController.updateNameCatalog);
+//update
+chatRouter.post('/addNewChatToCatalog', chatController.addNewChatToCatalog);
+//update
+chatRouter.post('/removeChatFromCatalog', chatController.removeChatFromCatalog);
+//delete
+chatRouter.post('/deleteCatalog', chatController.deleteCatalog);
+//get
+chatRouter.post('/getCatalogs', chatController.getCatalogs);
 
 module.exports = chatRouter;
+
+
