@@ -37,9 +37,10 @@ module.exports.dataForContest = async (req, res, next) => {
 };
 
 module.exports.getContestById = async (req, res, next) => {
+  const { params: { contestId }, tokenData: { userId, role } } = req
   try {
     let contestInfo = await db.Contests.findOne({
-      where: { id: req.headers.contestid },
+      where: { id: contestId },
       order: [
         [db.Offers, 'id', 'asc'],
       ],
@@ -59,8 +60,8 @@ module.exports.getContestById = async (req, res, next) => {
         {
           model: db.Offers,
           required: false,
-          where: req.tokenData.role === CONSTANTS.CREATOR
-            ? { userId: req.tokenData.userId }
+          where: role === CONSTANTS.CREATOR
+            ? { userId }
             : {},
           attributes: { exclude: ['userId', 'contestId'] },
           include: [
@@ -79,7 +80,7 @@ module.exports.getContestById = async (req, res, next) => {
             {
               model: db.Ratings,
               required: false,
-              where: { userId: req.tokenData.userId },
+              where: { userId },
               attributes: { exclude: ['userId', 'offerId'] },
             },
           ],
@@ -216,14 +217,14 @@ module.exports.setOfferStatus = async (req, res, next) => {
 };
 
 module.exports.getCustomersContests = (req, res, next) => {
-  const { status, offset, limit } = req.query;
+  const { query: {status, offset=0, limit}, tokenData: {userId} } = req; 
   console.log('status', status);
   console.log('offset', offset);
   console.log('limit', limit);
   db.Contests.findAll({
-    where: { status, userId: req.tokenData.userId },
-    limit: limit,
-    offset: offset ? offset : 0,
+    where: { status, userId },
+    limit,
+    offset,
     order: [['id', 'DESC']],
     include: [
       {

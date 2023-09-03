@@ -33,7 +33,7 @@ contestRouter.post(
 );
 //GET /contest/:id
 contestRouter.get(
-  '/getContestById',
+  '/:contestId',
   basicMiddlewares.canGetContest,
   contestController.getContestById
 );
