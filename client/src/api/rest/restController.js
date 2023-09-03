@@ -1,4 +1,5 @@
 import http from '../interceptor';
+import queryString from 'query-string'
 
 export const registerRequest = data => http.post('user/registration', data);
 export const loginRequest = data => http.post('user/login', data);
@@ -25,29 +26,13 @@ export const deleteCatalog = data => http.post('chat/deleteCatalog', data);
 export const removeChatFromCatalog = data =>
   http.post('chat/removeChatFromCatalog', data);
 export const changeCatalogName = data => http.post('chat/updateNameCatalog', data);
-export const getCustomersContests = data =>
-  http.get(
-    `contest/byCustomer?limit${data.limit}&offset=${data.offset}&status=${data.contestStatus}`,
-);
+export const getCustomersContests = (data) =>
+  //   http.get(
+  //     `contest/byCustomer?limit${data.limit}&offset=${data.offset}&status=${data.contestStatus}`,
+  // );
+  http.get(`contest/byCustomer?${queryString.stringify(data)}`);
 
-export const getActiveContests = ({
-  offset,
-  limit,
-  typeIndex,
-  contestId,
-  industry,
-  awardSort,
-  ownEntries,
-}) =>
-  http.post('contest/getAllContests', {
-    offset,
-    limit,
-    typeIndex,
-    contestId,
-    industry,
-    awardSort,
-    ownEntries,
-  });
+export const getActiveContests = (data) => http.get(`contest/getAllContests?${queryString.stringify(data)}`);
 
 export const getContestById = ({contestId}) =>
   http.get(`contest/${contestId}`);

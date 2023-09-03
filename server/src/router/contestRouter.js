@@ -6,7 +6,7 @@ const upload = require('../utils/fileUpload');
 
 const contestRouter = Router();
 
-//GET /users/id/contests || contests&user=id
+//GET /users/id/contests || contests&user=id ++++
 contestRouter.get(
   '/byCustomer',
   queryParser,
@@ -20,10 +20,10 @@ contestRouter.post(
 );
 
 //GET /contest/
-contestRouter.post(
+contestRouter.get(
   '/getAllContests',
   basicMiddlewares.onlyForCreative,
-  contestController.getContests
+  contestController.getAllContests
 );
 //GET /contest/:id
 contestRouter.get(
