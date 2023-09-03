@@ -6,11 +6,16 @@ const controller = require('../socketInit');
 const _ = require('lodash');
 
 module.exports.addMessage = async (req, res, next) => {
-  const { userId:senderId, firstName, lastName, displayName, avatar, email } =
-    req.tokenData;
+  const {
+    userId: senderId,
+    firstName,
+    lastName,
+    displayName,
+    avatar,
+    email,
+  } = req.tokenData;
   const { recipient, messageBody, interlocutor } = req.body;
   const participants = [senderId, recipient].sort((a, b) => a - b);
-
   const conversationDefault = {
     participants,
     blackList: [false, false],
@@ -28,15 +33,18 @@ module.exports.addMessage = async (req, res, next) => {
         useFindAndModify: false,
       }
     );
+    const interlocutorId = participants.filter(
+      (participant) => participant !== senderId
+    )[0];
+
+    //сохраняем сообщение в БД
     const message = new Message({
       sender: senderId,
       body: messageBody,
       conversation: newConversation._id,
     });
     await message.save();
-    const interlocutorId = participants.filter(
-      (participant) => participant !== senderId
-    )[0];
+
     const preview = {
       _id: newConversation._id,
       sender: senderId,
@@ -68,46 +76,92 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 module.exports.getChat = async (req, res, next) => {
-  const participants = [req.tokenData.userId, req.body.interlocutorId];
-  participants.sort(
-    (participant1, participant2) => participant1 - participant2
-  );
+  const userId = req.tokenData.userId;
+
+  // находим все беседы, где участвует текущий пользователь
   try {
-    const messages = await Message.aggregate([
+    const conversations = await Conversation.aggregate([
       {
-        $lookup: {
-          from: 'conversations',
-          localField: 'conversation',
-          foreignField: '_id',
-          as: 'conversationData',
+        $match: {
+          participants: { $elemMatch: { $eq: userId } },
         },
       },
-      { $match: { 'conversationData.participants': participants } },
-      { $sort: { createdAt: 1 } },
       {
         $project: {
           _id: 1,
-          sender: 1,
-          body: 1,
-          conversation: 1,
-          createdAt: 1,
-          updatedAt: 1,
+          participants: 1,
         },
       },
     ]);
 
-    const interlocutor = await userQueries.findUser({
-      id: req.body.interlocutorId,
-    });
-    res.send({
-      messages,
-      interlocutor: {
-        firstName: interlocutor.firstName,
-        lastName: interlocutor.lastName,
-        displayName: interlocutor.displayName,
-        id: interlocutor.id,
-        avatar: interlocutor.avatar,
-      },
+    //пушим в массив
+    const conversationAll = conversations.map((conv) => conv);
+
+    //делаем действия для каждой беседы
+    conversationAll.forEach(async (conv) => {
+      const currentConversationId = conv._id;
+
+      //получаем текущую беседу
+      const currentConversation = conversations;
+
+      //получем сообщения из текущей беседы
+      const messages = await Message.aggregate([
+        {
+          $match: {
+            conversation: currentConversationId,
+          },
+        },
+        {
+          $lookup: {
+            from: 'conversations',
+            localField: 'conversation',
+            foreignField: '_id',
+            as: 'conversationData',
+          },
+        },
+        { $sort: { createdAt: 1 } },
+        {
+          $project: {
+            _id: 1,
+            sender: 1,
+            body: 1,
+            conversation: 1,
+            createdAt: 1,
+            updatedAt: 1,
+          },
+        },
+      ]);
+
+
+      //получаем собеседников
+      const currentinterlocutor = conv.participants.filter(
+        (participant) => participant !== userId
+      )[0];
+
+      //получаем данные каждого собеседника
+      try {
+        const interlocutorData = await db.Users.findOne({
+          where: {
+            id: currentinterlocutor,
+          },
+        });
+        if (!interlocutorData) {
+          res.status(404).send('Interlocutor not found');
+          return;
+        }
+        res.status(200).send({
+          messages,
+          interlocutor: {
+            firstName: interlocutorData.firstName,
+            lastName: interlocutorData.lastName,
+            displayName: interlocutorData.displayName,
+            id: interlocutorData.id,
+            avatar: interlocutorData.avatar,
+          },
+        });
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -218,7 +272,6 @@ module.exports.favoriteChat = async (req, res, next) => {
 };
 
 module.exports.createCatalog = async (req, res, next) => {
-  console.log(req.body);
   const catalog = new Catalog({
     userId: req.tokenData.userId,
     catalogName: req.body.catalogName,

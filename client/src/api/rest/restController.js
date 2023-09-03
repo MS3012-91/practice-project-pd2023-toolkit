@@ -11,7 +11,7 @@ export const downloadContestFile = data =>
 export const payMent = data => http.post('user/pay', data.formData);
 export const changeMark = data => http.post('user/changeMark', data);
 export const getPreviewChat = () => http.post('chat/getPreview');
-export const getDialog = data => http.post('chat/getChat', data);
+export const getDialog = (data) => http.get('chat/getChat');
 export const dataForContest = data => http.post('contest/dataForContest', data);
 export const cashOut = data => http.post('user/cashout', data);
 export const updateUser = data => http.post('user/updateUser', data);

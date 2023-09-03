@@ -6,7 +6,7 @@ const chatRouter = Router();
 chatRouter.post('/newMessage', chatController.addMessage);
 
 //get
-chatRouter.post('/getChat', chatController.getChat);
+chatRouter.get('/getChat', chatController.getChat);
 
 //get
 chatRouter.post('/getPreview', chatController.getPreview);
