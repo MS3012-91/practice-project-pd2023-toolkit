@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { queryParser } = require('express-query-parser');
+const {queryParser} = require('../middlewares/queryParser');
 const contestController = require('../controllers/contestController');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const upload = require('../utils/fileUpload');
@@ -8,14 +8,8 @@ const contestRouter = Router();
 
 //GET /users/id/contests || contests&user=id
 contestRouter.get(
-  // '/getCustomersContests',
   '/byCustomer',
-  queryParser({
-    parseNull: true,
-    parseUndefined: true,
-    parseBoolean: true,
-    parseNumber: true,
-  }),
+  queryParser,
   contestController.getCustomersContests
 );
 

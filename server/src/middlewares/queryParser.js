@@ -1,8 +1,8 @@
-// const { queryParser } = require('express-query-parser');
+const { queryParser } = require('express-query-parser');
 
-// module.exports.queryParser = queryParser ({
-//   parseNull: true,
-//   parseUndefined: true,
-//   parseBoolean: true,
-//   parseNumber: true,
-// });
+module.exports.queryParser = queryParser ({
+  parseNull: true,
+  parseUndefined: true,
+  parseBoolean: true,
+  parseNumber: true,
+});
