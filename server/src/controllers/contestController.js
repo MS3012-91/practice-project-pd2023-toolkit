@@ -216,10 +216,14 @@ module.exports.setOfferStatus = async (req, res, next) => {
 };
 
 module.exports.getCustomersContests = (req, res, next) => {
+  const { status, offset, limit } = req.query;
+  console.log('status', status);
+  console.log('offset', offset);
+  console.log('limit', limit);
   db.Contests.findAll({
-    where: { status: req.headers.status, userId: req.tokenData.userId },
-    limit: req.body.limit,
-    offset: req.body.offset ? req.body.offset : 0,
+    where: { status, userId: req.tokenData.userId },
+    limit: limit,
+    offset: offset ? offset : 0,
     order: [['id', 'DESC']],
     include: [
       {

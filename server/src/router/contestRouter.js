@@ -1,62 +1,63 @@
 const { Router } = require('express');
-const checkToken = require('../middlewares/checkToken');
+const { queryParser } = require('express-query-parser');
 const contestController = require('../controllers/contestController');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const upload = require('../utils/fileUpload');
 
 const contestRouter = Router();
 
-contestRouter.post(
-  '/dataForContest',
-  checkToken.checkToken,
-  contestController.dataForContest
-);
-
-
-contestRouter.post(
-  '/getCustomersContests',
-  checkToken.checkToken,
+//GET /users/id/contests || contests&user=id
+contestRouter.get(
+  // '/getCustomersContests',
+  '/byCustomer',
+  queryParser({
+    parseNull: true,
+    parseUndefined: true,
+    parseBoolean: true,
+    parseNumber: true,
+  }),
   contestController.getCustomersContests
 );
 
-contestRouter.get(
-  '/getContestById',
-  checkToken.checkToken,
-  basicMiddlewares.canGetContest,
-  contestController.getContestById
+// GET contest/data
+contestRouter.post(
+  '/dataForContest',
+  contestController.dataForContest
 );
 
+//GET /contest/
 contestRouter.post(
   '/getAllContests',
-  checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
   contestController.getContests
 );
-
+//GET /contest/:id
+contestRouter.get(
+  '/getContestById',
+  basicMiddlewares.canGetContest,
+  contestController.getContestById
+);
+// POST /contest/:id
 contestRouter.get(
   '/downloadFile/:fileName',
-  checkToken.checkToken,
   contestController.downloadFile
 );
-
+// PATCH /contest/:id
 contestRouter.post(
   '/updateContest',
-  checkToken.checkToken,
   upload.updateContestFile,
   contestController.updateContest
 );
-
+//POST /contest/
 contestRouter.post(
   '/setNewOffer',
-  checkToken.checkToken,
   upload.uploadLogoFiles,
   basicMiddlewares.canSendOffer,
   contestController.setNewOffer
 );
-
+//PATCH contest/:id
 contestRouter.post(
   '/setOfferStatus',
-  checkToken.checkToken,
   basicMiddlewares.onlyForCustomerWhoCreateContest,
   contestController.setOfferStatus
 );
