@@ -11,6 +11,7 @@ const ImageUpload = props => {
     const imageType = /image.*/;
     if (!file.type.match(imageType)) {
       e.target.value = '';
+      console.log('Incorrect file type')
     } else {
       field.onChange(file);
       const reader = new FileReader();

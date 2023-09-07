@@ -38,3 +38,4 @@ export const getContestById = ({contestId}) =>
   http.get(`contest/${contestId}`);
 
 export const getOffers = () => http.get('offers');
+export const getTransactions = () => http.get('user/id/transactions');

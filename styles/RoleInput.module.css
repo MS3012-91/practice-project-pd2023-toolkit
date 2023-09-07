@@ -1,0 +1,25 @@
+.roleContainer {
+  border: 1px solid white;
+  padding: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: stretch;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.roleContainer .infoRoleContainer {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.roleContainer .infoRoleContainer .role {
+  color: white;
+  font-size: 22px;
+}
+.roleContainer .infoRoleContainer .infoRole {
+  color: white;
+  font-size: 12px;
+}/*# sourceMappingURL=RoleInput.module.css.map */

@@ -1,0 +1,174 @@
+.offerContainer {
+  display: flex;
+  margin-top: 15px;
+  align-self: stretch;
+  padding: 30px 40px 10px 40px;
+  background-color: #f9fafb;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  position: relative;
+  align-items: flex-start;
+}
+@media (max-width: 450px) {
+  .offerContainer {
+    padding: 10px 0;
+  }
+}
+.offerContainer i {
+  position: absolute;
+  left: calc(100% - 35px);
+  top: -15px;
+  font-size: 54px;
+}
+.offerContainer .reject {
+  color: red;
+}
+.offerContainer .resolve {
+  color: green;
+}
+.offerContainer .btnsContainer {
+  margin: 5px 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.offerContainer .btnsContainer .resolveBtn {
+  width: 100px;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #8aca6b;
+  color: white;
+}
+.offerContainer .btnsContainer .resolveBtn:hover {
+  background-color: rgba(138, 202, 107, 0.7);
+}
+.offerContainer .btnsContainer .rejectBtn {
+  text-align: center;
+  cursor: pointer;
+  width: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #CD5C5C;
+  color: white;
+  margin: 0 25px;
+}
+.offerContainer .btnsContainer .rejectBtn:hover {
+  background-color: rgba(205, 92, 92, 0.7);
+}
+.offerContainer .mainInfoContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+@media (max-width: 500px) {
+  .offerContainer .mainInfoContainer {
+    flex-direction: column;
+  }
+}
+.offerContainer .mainInfoContainer .userInfo {
+  min-width: 215px;
+}
+.offerContainer .mainInfoContainer i {
+  cursor: pointer;
+  position: absolute;
+  align-self: flex-start;
+  font-size: 26px;
+  transition: font-size 0.2s;
+  color: #4e618d;
+}
+@media (max-width: 450px) {
+  .offerContainer .mainInfoContainer i {
+    top: 30px;
+  }
+}
+@media (max-width: 380px) {
+  .offerContainer .mainInfoContainer i {
+    top: 100px;
+    align-self: flex-end;
+  }
+}
+@media (max-width: 500px) {
+  .offerContainer .mainInfoContainer i {
+    align-self: flex-end;
+  }
+}
+.offerContainer .mainInfoContainer i:hover {
+  font-size: 34px;
+  transition: font-size 0.2s;
+}
+.offerContainer .mainInfoContainer .responseConainer {
+  width: 70%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+@media (max-width: 800px) {
+  .offerContainer .mainInfoContainer .responseConainer {
+    margin-top: 10px;
+    max-width: 200px;
+  }
+}
+.offerContainer .mainInfoContainer .responseConainer .responseLogo {
+  width: auto;
+  height: 100px;
+}
+.offerContainer .mainInfoContainer .responseConainer .response {
+  text-align: center;
+  overflow-wrap: break-word;
+  align-self: stretch;
+  margin-left: 10px;
+  color: #556da5;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.offerContainer .mainInfoContainer .creativeRating {
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+}
+.offerContainer .mainInfoContainer .creativeRating .userScoreLabel {
+  margin-right: 10px;
+  color: #556da5;
+  font-size: 15px;
+}
+.offerContainer .mainInfoContainer .creativeInfoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.offerContainer .mainInfoContainer .creativeInfoContainer .nameAndEmail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.offerContainer .mainInfoContainer .creativeInfoContainer .nameAndEmail span {
+  color: #556da5;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.offerContainer .mainInfoContainer .creativeInfoContainer img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.winner {
+  background-color: #8aca6b;
+}
+
+.loser {
+  background-color: #CD5C5C;
+}/*# sourceMappingURL=OfferBox.module.css.map */

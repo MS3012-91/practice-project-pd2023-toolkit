@@ -169,6 +169,7 @@ class ContestPage extends React.Component {
                   onClick={() => changeContestViewMode(false)}
                   className={classNames(styles.btn, {
                     [styles.activeBtn]: !isBrief,
+                    [styles.inactiveBtn]: offers.length === 0,
                   })}
                 >
                   Offer

@@ -1,0 +1,99 @@
+.progressBarContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 750px) {
+  .progressBarContainer {
+    display: none;
+  }
+}
+.progressBarContainer .progressContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.progressBarContainer .progressContainer .stepDescContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4px;
+}
+.progressBarContainer .progressContainer .stepDescContainer .arrow {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-bottom: 0;
+  border-top-color: #28d2d0;
+}
+.progressBarContainer .progressContainer .stepDescContainer .stepDesc {
+  text-align: center;
+  background-color: #28d2d0;
+  font-size: 15px;
+  font-weight: 500;
+  width: 120px;
+  padding: 4px 8px 6px 8px;
+  color: white;
+  border-radius: 4px;
+  margin-top: -40px;
+}
+.progressBarContainer .lineBar {
+  width: 76px;
+  height: 5px;
+  border: 1px solid #d5d5da;
+  border-left: none;
+  border-right: none;
+  box-sizing: border-box;
+  margin: 0px -1px;
+}
+.progressBarContainer .outerComplete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 18px;
+  background-color: #8aca6b;
+  border: 2px solid #8aca6b;
+}
+.progressBarContainer .outerComplete .innerComplete {
+  width: 24px;
+  height: 24px;
+  background-image: url(./check.png);
+}
+.progressBarContainer .outerActive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  box-sizing: border-box;
+  border: 2px solid #28d2d0;
+}
+.progressBarContainer .outerActive .innerActive {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #28d2d0;
+}
+.progressBarContainer .outerNotActive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  box-sizing: border-box;
+  border: 1px solid #d5d5da;
+}
+.progressBarContainer .outerNotActive:hover {
+  border: 2px solid #28d2d0;
+}
+.progressBarContainer .outerNotActive .innerNotActive {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}/*# sourceMappingURL=ProgressBar.module.css.map */

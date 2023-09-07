@@ -1,0 +1,103 @@
+.updateContainer {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.updateContainer button {
+  align-self: flex-end;
+  background-color: #4e618d;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+}
+.updateContainer button:hover {
+  background-color: #f27e51;
+}
+.updateContainer .imageUploadContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.updateContainer .imageUploadContainer .imgStyle {
+  width: 120px;
+  height: 120px;
+  align-self: center;
+}
+.updateContainer .imageUploadContainer .uploadInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.updateContainer .imageUploadContainer .uploadInputContainer span {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: red;
+}
+.updateContainer .imageUploadContainer .uploadInputContainer input {
+  display: none;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: #66afe9;
+}
+.updateContainer .imageUploadContainer .uploadInputContainer label {
+  padding: 5px 10px;
+  color: white;
+  background-color: #455a89;
+  border-radius: 4px;
+  align-self: flex-start;
+  cursor: pointer;
+}
+.updateContainer .imageUploadContainer .uploadInputContainer label:hover {
+  color: white;
+  background-color: #f27e51;
+}
+.updateContainer .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.updateContainer .container .label {
+  margin-bottom: 2px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #585859;
+}
+.updateContainer .container .inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.updateContainer .container .inputContainer .notValid {
+  border: 1px solid red !important;
+}
+.updateContainer .container .inputContainer .error {
+  display: inline-block;
+  align-self: stretch;
+  margin-bottom: 5px;
+  color: red;
+  font-size: 14px;
+}
+.updateContainer .container .inputContainer .input {
+  outline: none;
+  height: 48px;
+  border: 2px solid #d0d0d0;
+  padding: 0 8px;
+  font-size: 17px;
+  color: #555;
+  border-radius: 4px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.updateContainer .container .inputContainer .input:focus {
+  border-color: #66afe9;
+}/*# sourceMappingURL=UpdateUserInfoForm.module.css.map */

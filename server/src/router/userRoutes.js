@@ -27,6 +27,9 @@ userRouter.post(
   userController.payment
 );
 
+userRouter.get('/id/transactions', checkToken.checkToken, userController.getTransactions
+);
+
 userRouter.post(
   '/changeMark',
   checkToken.checkToken,

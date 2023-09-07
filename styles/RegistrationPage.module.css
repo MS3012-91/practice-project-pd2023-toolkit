@@ -1,0 +1,87 @@
+.signUpPage {
+  background-color: #3ea9f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signUpPage .footer {
+  padding-top: 80px;
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+.signUpPage .footer .articlesMainContainer {
+  width: 60%;
+  display: flex;
+  min-width: 300px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+@media (max-width: 1000px) {
+  .signUpPage .footer .articlesMainContainer {
+    flex-direction: column;
+  }
+}
+.signUpPage .footer .articlesMainContainer .ColumnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-right: 48px;
+  margin-left: 48px;
+  flex: 1;
+}
+.signUpPage .footer .articlesMainContainer .ColumnContainer .headerArticle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #363945;
+  margin-bottom: 20px;
+}
+.signUpPage .footer .articlesMainContainer .ColumnContainer .article {
+  color: #9ca8b7;
+  line-height: 30px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.signUpPage .footer .articlesMainContainer .ColumnContainer .article .orangeSpan {
+  color: #f18762;
+}
+.signUpPage .signUpContainer {
+  width: 72%;
+  padding: 20px;
+  min-width: 280px;
+  min-height: 650px;
+  padding-top: 40px;
+}
+.signUpPage .signUpContainer .headerSignUpPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+  padding-left: 45px;
+  padding-right: 60px;
+}
+@media (max-width: 530px) {
+  .signUpPage .signUpContainer .headerSignUpPage {
+    padding: 0;
+  }
+}
+.signUpPage .signUpContainer .linkLoginContainer {
+  border: 1px solid white;
+  width: 80px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  height: 40px;
+  text-decoration: none;
+}
+.signUpPage .signUpContainer .linkLoginContainer span {
+  color: white;
+}/*# sourceMappingURL=RegistrationPage.module.css.map */

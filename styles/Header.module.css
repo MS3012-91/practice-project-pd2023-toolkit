@@ -1,0 +1,295 @@
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+.headerContainer .navContainer {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+}
+@media (max-width: 920px) {
+  .headerContainer .navContainer {
+    justify-content: center;
+  }
+}
+@media (max-width: 700px) {
+  .headerContainer .navContainer {
+    justify-content: flex-start;
+  }
+}
+.headerContainer .navContainer .logo {
+  align-self: flex-end;
+}
+@media (max-width: 920px) {
+  .headerContainer .navContainer .logo {
+    display: none;
+  }
+}
+.headerContainer .navContainer .startContestBtn {
+  text-align: center;
+  max-width: 340px;
+  padding: 10px 22px;
+  border: 2px solid #28d2d0;
+  color: #28d2d0;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.headerContainer .navContainer .startContestBtn:hover {
+  color: white;
+  background-color: #28d2d0;
+}
+.headerContainer .navContainer .leftNav {
+  display: flex;
+}
+@media (max-width: 750px) {
+  .headerContainer .navContainer .leftNav {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.headerContainer .navContainer .leftNav .nav {
+  display: flex;
+}
+.headerContainer .navContainer .leftNav .nav ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@media (max-width: 920px) {
+  .headerContainer .navContainer .leftNav .nav ul {
+    padding: 0;
+  }
+}
+@media (max-width: 700px) {
+  .headerContainer .navContainer .leftNav .nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.headerContainer .navContainer .leftNav .nav ul:last-child li ul {
+  width: 200px;
+}
+.headerContainer .navContainer .leftNav .nav ul li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 30px;
+}
+@media (max-width: 700px) {
+  .headerContainer .navContainer .leftNav .nav ul li {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+.headerContainer .navContainer .leftNav .nav ul li:hover span {
+  color: #f27e51;
+}
+.headerContainer .navContainer .leftNav .nav ul li:hover ul {
+  display: block;
+  position: absolute;
+  border: 1px solid #eee;
+  z-index: 1000;
+  top: 130px;
+  background-color: white;
+}
+@media (max-width: 700px) {
+  .headerContainer .navContainer .leftNav .nav ul li:hover ul {
+    top: auto;
+    left: 145px;
+  }
+}
+.headerContainer .navContainer .leftNav .nav ul li ul {
+  padding: 0;
+  margin: 0;
+  width: 160px;
+  display: none;
+}
+.headerContainer .navContainer .leftNav .nav ul li ul .last {
+  width: 100%;
+  padding-top: 8px;
+  box-sizing: border-box;
+  border-top: 1px solid aquamarine;
+}
+.headerContainer .navContainer .leftNav .nav ul li ul li {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+.headerContainer .navContainer .leftNav .nav ul li ul li:hover {
+  background: #f9fafb;
+}
+.headerContainer .navContainer .leftNav .nav ul li ul li a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #333;
+}
+.headerContainer .navContainer .leftNav .nav ul li ul li a:hover {
+  color: #f27e51;
+}
+.headerContainer .navContainer .leftNav .nav ul li span {
+  color: #495d8b;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 15px 0;
+}
+.headerContainer .loginSignnUpHeaders {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #ebebeb;
+  margin-bottom: 13px;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer {
+  margin-left: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-left: 1px solid #ebebeb;
+  height: 40px;
+}
+@media (max-width: 600px) {
+  .headerContainer .loginSignnUpHeaders .userButtonsContainer {
+    margin-left: 60px;
+  }
+}
+@media (max-width: 400px) {
+  .headerContainer .loginSignnUpHeaders .userButtonsContainer {
+    margin-left: 20px;
+  }
+}
+@media (max-width: 320px) {
+  .headerContainer .loginSignnUpHeaders .userButtonsContainer {
+    margin-left: 0;
+  }
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .emailIcon {
+  padding: 0 15px;
+  border-right: 1px solid #ebebeb;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  border-right: 1px solid #ebebeb;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo:hover ul {
+  display: block;
+  position: absolute;
+  top: 45px;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo ul {
+  border: 1px solid #eee;
+  z-index: 500;
+  padding: 5px 0;
+  list-style: none;
+  background: white;
+  width: 180px;
+  display: none;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo ul li {
+  text-align: left;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo ul li:hover {
+  background: #f9fafb;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo ul li span {
+  display: inline-block;
+  padding: 5px 15px;
+  color: #333;
+  font-size: 16px;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo img {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer .userInfo span {
+  padding: 0;
+  margin-left: 5px;
+  color: #718888;
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+}
+.headerContainer .loginSignnUpHeaders .userButtonsContainer span {
+  padding: 0 15px;
+  color: #718888;
+  font-weight: 400;
+  font-size: 14px;
+  border-right: 1px solid #ebebeb;
+}
+.headerContainer .loginSignnUpHeaders .numberContainer {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  border-right: 1px solid #ebebeb;
+  border-left: 1px solid #ebebeb;
+  margin-left: 120px;
+  height: 40px;
+}
+@media (max-width: 600px) {
+  .headerContainer .loginSignnUpHeaders .numberContainer {
+    margin-left: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .headerContainer .loginSignnUpHeaders .numberContainer {
+    padding: 0 5px;
+    margin-left: 0;
+  }
+}
+.headerContainer .loginSignnUpHeaders .numberContainer span {
+  color: #337ab7;
+  font-size: 14px;
+  margin-left: 10px;
+}
+@media (max-width: 360px) {
+  .headerContainer .loginSignnUpHeaders .numberContainer span {
+    font-size: 12px;
+  }
+}
+.headerContainer .fixedHeader {
+  z-index: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  background-color: rgb(69, 90, 137);
+  border-bottom: 3px solid rgb(255, 255, 255);
+  height: 30px;
+}
+.headerContainer .fixedHeader .info {
+  font-size: 8pt;
+  letter-spacing: 0.3px;
+  color: white;
+  margin-right: 4px;
+}
+@media (max-width: 600px) {
+  .headerContainer .fixedHeader .info {
+    display: none;
+  }
+}
+.headerContainer .fixedHeader a {
+  font-size: 8pt;
+  letter-spacing: 0.3px;
+  color: lightyellow;
+  text-decoration: underline;
+}/*# sourceMappingURL=Header.module.css.map */

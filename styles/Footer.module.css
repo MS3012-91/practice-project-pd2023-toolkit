@@ -1,0 +1,107 @@
+.footerContainer {
+  width: 100%;
+}
+.footerContainer .bottomFooterContainer {
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #232828;
+}
+.footerContainer .bottomFooterContainer .bottomFooterWrapper {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .footerContainer .bottomFooterContainer .bottomFooterWrapper {
+    flex-direction: column;
+  }
+}
+.footerContainer .bottomFooterContainer .bottomFooterWrapper .logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footerContainer .bottomFooterContainer .bottomFooterWrapper .logo span {
+  float: left;
+  padding: 10px 0 10px 30px;
+  margin: 0 0 5px 33px;
+  border-left: 1px solid #3d4141;
+  font-size: 14px;
+  color: #666868;
+}
+.footerContainer .bottomFooterContainer .bottomFooterWrapper .socialLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footerContainer .bottomFooterContainer .bottomFooterWrapper .socialLinks .social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  margin-left: 15px;
+}
+.footerContainer .footerTop {
+  width: 100%;
+  background-color: #2B3030;
+  padding: 80px 0;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+.footerContainer .footerTop div {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+@media (min-width: 768px) {
+  .footerContainer .footerTop div {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .footerContainer .footerTop div {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .footerContainer .footerTop div {
+    width: 1170px;
+  }
+}
+.footerContainer .footerTop div div {
+  display: flex;
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  flex-direction: column;
+  padding: 15px;
+}
+.footerContainer .footerTop div div h4 {
+  font-size: 16px;
+  color: #fff;
+  display: block;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+}
+.footerContainer .footerTop div div a {
+  padding-bottom: 7px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #767979;
+}
+.footerContainer .footerTop div div a:hover {
+  color: rgb(249, 118, 75);
+}/*# sourceMappingURL=Footer.module.css.map */

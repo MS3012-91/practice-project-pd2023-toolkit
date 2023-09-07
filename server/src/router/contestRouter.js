@@ -19,7 +19,8 @@ contestRouter.post(
   contestController.dataForContest
 );
 
-//GET /contest/
+
+//GET /contest/ +++
 contestRouter.get(
   '/getAllContests',
   basicMiddlewares.onlyForCreative,
@@ -36,8 +37,9 @@ contestRouter.get(
   '/downloadFile/:fileName',
   contestController.downloadFile
 );
-// PATCH /contest/:id
-contestRouter.post(
+
+// PATCH /contest/:id 
+contestRouter.patch(
   '/updateContest',
   upload.updateContestFile,
   contestController.updateContest

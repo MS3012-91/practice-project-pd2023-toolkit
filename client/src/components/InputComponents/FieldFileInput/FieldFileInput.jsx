@@ -8,10 +8,11 @@ const FieldFileInput = ({ classes, ...rest }) => {
     <Field name={rest.name}>
       {props => {
         const { field } = props;
-
+        console.log('field', field);
         const getFileName = () => {
-          if (props.field.value) {
-            return props.field.value.name;
+          if (field.value) {
+            console.log('props.field.valu', field.value.name);
+            return field.value.name;
           }
           return '';
         };

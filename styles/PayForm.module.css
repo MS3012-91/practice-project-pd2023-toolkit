@@ -1,0 +1,191 @@
+.payFormContainer {
+  background-color: #f4f6f6;
+  border: 1px solid #ccd3d3;
+  padding: 25px 15px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+@media (max-width: 480px) {
+  .payFormContainer {
+    padding: 0;
+  }
+}
+.payFormContainer .headerInfo {
+  padding: 0 15px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.payFormContainer .cardContainer {
+  align-self: center;
+  padding: 0 25px;
+}
+@media (max-width: 480px) {
+  .payFormContainer .cardContainer {
+    padding: 0;
+  }
+}
+.payFormContainer .buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+  margin-bottom: 25px;
+  margin-top: 20px;
+}
+.payFormContainer .buttonsContainer .payButton {
+  font-size: 20px;
+  padding: 8px 50px;
+  cursor: pointer;
+  background-color: #f3875d;
+  text-align: center;
+  line-height: 1.4;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+@media (max-width: 480px) {
+  .payFormContainer .buttonsContainer .payButton {
+    padding: 8px 30px;
+  }
+}
+.payFormContainer .buttonsContainer .backButton {
+  background-color: #ababac;
+  font-size: 20px;
+  padding: 8px 50px;
+  line-height: 1.4;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: white;
+  margin-left: 10px;
+}
+@media (max-width: 480px) {
+  .payFormContainer .buttonsContainer .backButton {
+    padding: 8px 30px;
+  }
+}
+.payFormContainer .totalSum {
+  margin-top: 25px;
+  padding: 0 15px;
+  font-size: 22px;
+  color: #333;
+  line-height: 1.4;
+}
+.payFormContainer .formContainer {
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.payFormContainer .formContainer .smallInputContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput:first-child {
+  margin-right: 5px;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput:last-child {
+  margin-left: 5px;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput .inputContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput .inputContainer .error {
+  align-self: flex-end;
+  color: red;
+  margin-top: 2px;
+  font-size: 14px;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput .inputContainer .notValid {
+  border: 1px solid red;
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput input {
+  display: inline-block;
+  align-self: stretch;
+  outline: 0;
+  line-height: 1.4;
+  font-size: 14px;
+  color: #555;
+  margin-top: 4px;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: all 0.2s;
+  -webkit-font-smoothing: antialiased;
+}
+@media (max-width: 480px) {
+  .payFormContainer .formContainer .smallInputContainer .smallInput input {
+    max-width: 130px;
+  }
+}
+.payFormContainer .formContainer .smallInputContainer .smallInput span {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+.payFormContainer .formContainer .bigInput {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.payFormContainer .formContainer .bigInput .inputContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.payFormContainer .formContainer .bigInput .inputContainer .error {
+  align-self: flex-end;
+  color: red;
+  margin-top: 2px;
+  font-size: 14px;
+}
+.payFormContainer .formContainer .bigInput .inputContainer .notValid {
+  border: 1px solid red;
+}
+.payFormContainer .formContainer .bigInput span {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+.payFormContainer .formContainer .bigInput input {
+  align-self: stretch;
+  outline: 0;
+  line-height: 1.4;
+  font-size: 14px;
+  color: #555;
+  margin-top: 4px;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: all 0.2s;
+  -webkit-font-smoothing: antialiased;
+}/*# sourceMappingURL=PayForm.module.css.map */

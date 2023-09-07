@@ -1,0 +1,74 @@
+.previewChatBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
+  cursor: pointer;
+  border-bottom: 1px solid #4e618d;
+}
+.previewChatBox:hover {
+  background-color: #e5e5e5;
+}
+.previewChatBox .infoContainer {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  align-items: flex-start;
+  padding: 0 15px;
+  padding-right: 10px;
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+.previewChatBox .infoContainer .buttonsContainer {
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.previewChatBox .infoContainer .buttonsContainer .time {
+  margin-right: 10px;
+}
+.previewChatBox .infoContainer .buttonsContainer i {
+  margin-right: 5px;
+  font-size: 16px;
+  transition: font-size 0.2s ease;
+}
+.previewChatBox .infoContainer .buttonsContainer i:hover {
+  font-size: 20px;
+  color: red;
+  transition: font-size 0.2s ease;
+}
+.previewChatBox .infoContainer span {
+  color: grey;
+  font-size: 15px;
+}
+.previewChatBox .infoContainer .interlocutorInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.previewChatBox .infoContainer .interlocutorInfo .interlocutorMessage {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: grey;
+  font-size: 15px;
+  width: 65px;
+}
+.previewChatBox .infoContainer .interlocutorInfo .interlocutorName {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #6b8ab1;
+  width: 65px;
+  font-weight: 500;
+  font-size: 16px;
+}
+.previewChatBox img {
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  margin-left: 10px;
+}/*# sourceMappingURL=DialogBox.module.css.map */

@@ -53,6 +53,11 @@ class Header extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link to="/transactions" style={{ textDecoration: 'none' }}>
+                  <span>My Transactions</span>
+                </Link>
+              </li>
+              <li>
                 <Link
                   to="http:/www.google.com"
                   style={{ textDecoration: 'none' }}
@@ -104,7 +109,7 @@ class Header extends React.Component {
             Squadhelp recognized as one of the Most Innovative Companies by Inc
             Magazine.
           </span>
-          <a href="http://www.google.com">Read Announcement</a>
+          <a href="#">Read Announcement</a>
         </div>
         <div className={styles.loginSignnUpHeaders}>
           <div className={styles.numberContainer}>
@@ -132,28 +137,28 @@ class Header extends React.Component {
                   />
                   <ul>
                     <li>
-                      <a href="http://www.google.com">Beauty</a>
+                      <a href="#">Beauty</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">Consulting</a>
+                      <a href="#">Consulting</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">E-Commerce</a>
+                      <a href="#">E-Commerce</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">Fashion & Clothing</a>
+                      <a href="#">Fashion & Clothing</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">Finance</a>
+                      <a href="#">Finance</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">Real Estate</a>
+                      <a href="#">Real Estate</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">Tech</a>
+                      <a href="#">Tech</a>
                     </li>
                     <li className={styles.last}>
-                      <a href="http://www.google.com">More Categories</a>
+                      <a href="#">More Categories</a>
                     </li>
                   </ul>
                 </li>
@@ -165,25 +170,25 @@ class Header extends React.Component {
                   />
                   <ul>
                     <li>
-                      <a href="http://www.google.com">HOW IT WORKS</a>
+                      <a href="#">HOW IT WORKS</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">PRICING</a>
+                      <a href="#">PRICING</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">AGENCY SERVICE</a>
+                      <a href="#">AGENCY SERVICE</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">ACTIVE CONTESTS</a>
+                      <a href="#">ACTIVE CONTESTS</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">WINNERS</a>
+                      <a href="#">WINNERS</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">LEADERBOARD</a>
+                      <a href="#">LEADERBOARD</a>
                     </li>
                     <li className={styles.last}>
-                      <a href="http://www.google.com">BECOME A CREATIVE</a>
+                      <a href="#">BECOME A CREATIVE</a>
                     </li>
                   </ul>
                 </li>
@@ -198,16 +203,16 @@ class Header extends React.Component {
                       <Link to = '/offers'> Offers </Link>
                     </li>
                     <li>
-                      <a href="http://www.google.com">NAMES</a>
+                      <a href="#">NAMES</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">TAGLINES</a>
+                      <a href="#">TAGLINES</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">LOGOS</a>
+                      <a href="#">LOGOS</a>
                     </li>
                     <li className={styles.last}>
-                      <a href="http://www.google.com">TESTIMONIALS</a>
+                      <a href="#">TESTIMONIALS</a>
                     </li>
                   </ul>
                 </li>
@@ -219,22 +224,22 @@ class Header extends React.Component {
                   />
                   <ul>
                     <li>
-                      <a href="http://www.google.com">POPULAR NAMES</a>
+                      <a href="#">POPULAR NAMES</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">SHORT NAMES</a>
+                      <a href="#">SHORT NAMES</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">INTRIGUING NAMES</a>
+                      <a href="#">INTRIGUING NAMES</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">NAMES BY CATEGORY</a>
+                      <a href="#">NAMES BY CATEGORY</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">VISUAL NAME SEARCH</a>
+                      <a href="#">VISUAL NAME SEARCH</a>
                     </li>
                     <li className={styles.last}>
-                      <a href="http://www.google.com">SELL YOUR DOMAINS</a>
+                      <a href="#">SELL YOUR DOMAINS</a>
                     </li>
                   </ul>
                 </li>
@@ -246,18 +251,18 @@ class Header extends React.Component {
                   />
                   <ul>
                     <li>
-                      <a href="http://www.google.com">ULTIMATE NAMING GUIDE</a>
+                      <a href="#">ULTIMATE NAMING GUIDE</a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">
+                      <a href="#">
                         POETIC DEVICES IN BUSINESS NAMING
                       </a>
                     </li>
                     <li>
-                      <a href="http://www.google.com">CROWDED BAR THEORY</a>
+                      <a href="#">CROWDED BAR THEORY</a>
                     </li>
                     <li className={styles.last}>
-                      <a href="http://www.google.com">ALL ARTICLES</a>
+                      <a href="#">ALL ARTICLES</a>
                     </li>
                   </ul>
                 </li>

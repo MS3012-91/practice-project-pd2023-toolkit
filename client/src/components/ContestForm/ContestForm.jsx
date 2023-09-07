@@ -72,7 +72,7 @@ class ContestForm extends React.Component {
               industry: '',
               focusOfWork: '',
               targetCustomer: '',
-              file: '',
+              file: null,
               ...variableOptions[this.props.contestType],
               ...this.props.initialValues,
             }}
@@ -81,7 +81,7 @@ class ContestForm extends React.Component {
             innerRef={this.props.formRef}
             enableReinitialize
           >
-            <Form>
+            <Form encType="multipart/form-data">
               <div className={styles.inputContainer}>
                 <span className={styles.inputHeader}>Title of contest</span>
                 <FormInput
