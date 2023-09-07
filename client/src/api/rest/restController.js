@@ -4,7 +4,7 @@ import queryString from 'query-string'
 export const registerRequest = data => http.post('user/registration', data);
 export const loginRequest = data => http.post('user/login', data);
 export const getUser = () => http.post('user/getUser');
-export const updateContest = data => http.post('contest/updateContest', data);
+export const updateContest = data => http.patch('contest/updateContest', data);
 export const setNewOffer = data => http.post('contest/setNewOffer', data);
 export const setOfferStatus = data => http.post('contest/setOfferStatus', data);
 export const downloadContestFile = data =>
@@ -36,3 +36,5 @@ export const getActiveContests = (data) => http.get(`contest/getAllContests?${qu
 
 export const getContestById = ({contestId}) =>
   http.get(`contest/${contestId}`);
+
+export const getOffers = () => http.get('offers');
