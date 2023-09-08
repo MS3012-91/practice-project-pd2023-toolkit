@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import {getTransactions} from '../../api/rest/restController'
+import TransactionsTable from './TransactionsTable/TransactionsTable';
 
-function TransactionsPage() {
-    useEffect(() => {
-        getTransactions()
-    }, []) 
+
+function TransactionsPage(){
   return (
-      <div>
-          <Header />
-          <Footer />
-    </div>
-  )
+    <>
+      <Header />
+      <TransactionsTable/>
+      <Footer />
+    </>
+  );
 }
 
-export default TransactionsPage
+  
+export default TransactionsPage;
