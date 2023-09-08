@@ -20,9 +20,6 @@ export const getTransactions = decorateAsyncThunk({
   key: `${TRANSACTIONS_SLICE_NAME}/get`,
   thunk: async () => {
     const { data } = await restController.getTransactions();
-    console.log('totalData', data);
-    console.log('data', data.foundTransactions);
-    console.log('data.userName', data.userName);
     return (data);
   },
 });
@@ -31,7 +28,6 @@ const extraReducers = createExtraReducers({
   thunk: getTransactions,
   pendingReducer,
   fulfilledReducer: (state, { payload }) => {
-    console.log('payload', [...payload.foundTransactions]);
     state.transactions = [...payload.foundTransactions];
     state.userName = payload.userName;
     state.isFetching = false;

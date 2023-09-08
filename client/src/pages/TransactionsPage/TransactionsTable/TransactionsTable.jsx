@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getTransactions } from '../../../store/slices/transactionsSlice';
 import SpinnerLoader from '../../../components/Spinner/Spinner';
 import { format } from 'date-fns';
@@ -7,25 +7,24 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import styles from './TransactionsTable.module.sass';
 
 
-function TransactionsTable() {
-  const { isFetching, error, transactions, userName} = useSelector(
+function TransactionsTable(props) {
+  const dispatch = useDispatch();
+  let { isFetching, error, transactions, userName } = useSelector(
     ({ transactionsList }) => transactionsList
   );
-  console.log('transactionsVsName', transactions);
-  // const transaction = transactions.foundTransactions;
-  // const userName = transactions.userName;
-
-  console.log('transaction', transactions);
-  console.log('userName', userName);
-
-  const dispatch = useDispatch();
-
+  console.log('TABLE', props.selectedDate);
   const { get } = bindActionCreators({ get: getTransactions }, dispatch);
- 
+
+  if (props.selectedDate) {
+    transactions = transactions.filter(
+      (t) => format(new Date(t.createdAt), 'dd MMM yyyy') === props.selectedDate
+    );
+  }
+
   useEffect(() => {
     get();
   }, []);
-  
+
   return (
     <>
       {error && <div> ERROR</div>}
@@ -33,6 +32,7 @@ function TransactionsTable() {
       {!isFetching && !error && !transactions.length && (
         <div> No Transactions </div>
       )}
+      console.log('selectedDate', selectedDate);
       {!isFetching && !error && transactions.length && (
         <table className={styles.table}>
           <caption> Transactions </caption>
@@ -81,18 +81,16 @@ function TransactionsTable() {
           t.operationType === 'EXPENSE' ? accum + Number(t.amount) : accum,
         0
       ) >= 300 &&
-        new Date(Math.max(...transactions.map((t)=> new Date (t.createdAt))))< Date.now()+3 &&(
-        <div className={styles.congrats}>
-          <p>
-            {userName}, congratulations, create the next contest within 3
-            days with a 5% discount.
-          </p>
-        </div>
-        )}  
+        new Date(Math.max(...transactions.map((t) => new Date(t.createdAt)))) <
+          Date.now() + 3 && (
+          <div className={styles.congrats}>
+            <p>
+              {userName}, congratulations, create the next contest within 3 days
+              with a 5% discount.
+            </p>
+          </div>
+        )}
     </>
   );
 }
-
-
-
 export default TransactionsTable;
