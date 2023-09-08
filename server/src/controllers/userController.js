@@ -271,14 +271,25 @@ module.exports.cashout = async (req, res, next) => {
 
 module.exports.getTransactions = async (req, res, next) => {
   const { userId } = req.tokenData;
+  console.log('userId', userId);
   try {
+    const user = await db.Users.findOne({
+      raw: true,
+      where: { id: userId },
+      attributes: ['displayName'],
+    });
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+    const userName = user.displayName;
+    console.log('userName', userName);
     const foundTransactions = await db.Transactions.findAll({
       raw: true,
       where: { userId },
       attributes: { exclude: ['updatedAt'] },
     });
     console.log('foundTransactions', foundTransactions);
-    res.status(200).send(foundTransactions);
+    res.status(200).send({ foundTransactions, userName });
   } catch (err) {
     next(err);
   }
