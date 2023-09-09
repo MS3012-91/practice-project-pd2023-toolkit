@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import TransactionsTable from './TransactionsTable/TransactionsTable.jsx';
 import TransactionsDateFilter from './TransactionsTable/TransactionsDateFilter';
 import styles from './TransactionsPage.module.sass';
+import TransactionsCountFilter from './TransactionsTable/TransactionsCountFilter';
 
 function TransactionsPage() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -15,6 +16,7 @@ function TransactionsPage() {
   return (
     <div className={styles.transactionsPage}>
       <Header />
+      <TransactionsCountFilter />
       <div className={styles.transactionsPageBody}>
         <TransactionsDateFilter
           handleSelectDate={handleSelectDate}

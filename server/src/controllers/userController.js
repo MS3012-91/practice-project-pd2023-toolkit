@@ -272,6 +272,8 @@ module.exports.cashout = async (req, res, next) => {
 
 module.exports.getTransactions = async (req, res, next) => {
   const { userId } = req.tokenData;
+  const { offset = 0, limit } = req.query;
+  console.log('req.query', req.query);
   try {
     const user = await db.Users.findOne({
       raw: true,
