@@ -9,9 +9,8 @@ import styles from './TransactionsTable.module.sass';
 
 function TransactionsTable(props) {
   const dispatch = useDispatch();
-  let { isFetching, error, transactions, userName } = useSelector(
-    ({ transactionsList }) => transactionsList
-  );
+  let { isFetching, error, transactions, userName, sumOfExpenses } =
+    useSelector(({ transactionsList }) => transactionsList);
   const { get } = bindActionCreators({ get: getTransactions }, dispatch);
 
   if (props.selectedDate) {
@@ -19,11 +18,9 @@ function TransactionsTable(props) {
       (t) => format(new Date(t.createdAt), 'dd MMM yyyy') === props.selectedDate
     );
   }
-
   useEffect(() => {
     get();
   }, []);
-
   return (
     <div className={styles.tableResults}>
       {error && <div> ERROR</div>}
@@ -74,20 +71,14 @@ function TransactionsTable(props) {
           </tfoot>
         </table>
       )}
-      {transactions.reduce(
-        (accum, t) =>
-          t.operationType === 'EXPENSE' ? accum + Number(t.amount) : accum,
-        0
-      ) >= 300 &&
-        new Date(Math.max(...transactions.map((t) => new Date(t.createdAt)))) <
-          Date.now() + 3 && (
-          <div className={styles.congrats}>
-            <p>
-              {userName}, congratulations, create the next contest within 3 days
-              with a 5% discount.
-            </p>
-          </div>
-        )}
+      {sumOfExpenses>300 && (
+        <div className={styles.congrats}>
+          <p>
+            {userName}, congratulations, create the next contest within 3 days
+            with a 5% discount.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

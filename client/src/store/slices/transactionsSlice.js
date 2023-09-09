@@ -14,6 +14,7 @@ const initialState = {
   error: null,
   transactions: [],
   userName: null,
+  sumOfExpenses : 0,
 };
 
 export const getTransactions = decorateAsyncThunk({
@@ -30,6 +31,7 @@ const extraReducers = createExtraReducers({
   fulfilledReducer: (state, { payload }) => {
     state.transactions = [...payload.foundTransactions];
     state.userName = payload.userName;
+    state.sumOfExpenses = payload.sumOfExpenses;
     state.isFetching = false;
   },
   rejectedReducer,

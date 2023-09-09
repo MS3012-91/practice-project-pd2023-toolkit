@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const CONSTANTS = require('../constants');
 const db = require('../models');
+const { Op } = require('sequelize');
 const NotUniqueEmail = require('../errors/NotUniqueEmail');
 const moment = require('moment');
 const { v4: uuid } = require('uuid');
@@ -271,7 +272,6 @@ module.exports.cashout = async (req, res, next) => {
 
 module.exports.getTransactions = async (req, res, next) => {
   const { userId } = req.tokenData;
-  console.log('userId', userId);
   try {
     const user = await db.Users.findOne({
       raw: true,
@@ -282,13 +282,25 @@ module.exports.getTransactions = async (req, res, next) => {
       return res.status(404).send({ error: 'User not found' });
     }
     const userName = user.displayName;
-    console.log('userName', userName);
     const foundTransactions = await db.Transactions.findAll({
       raw: true,
       where: { userId },
       attributes: { exclude: ['updatedAt'] },
     });
-    res.status(200).send({ foundTransactions, userName });
+    if (!foundTransactions) {
+      return res.status(404).send('No transactions');
+    }
+    const threeDaysAgo = new Date();
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+    const sumOfExpenses = await db.Transactions.sum('amount', {
+      where: {
+        operationType: 'EXPENSE',
+        createdAt: {
+          [Op.gte]: threeDaysAgo,
+        },
+      },
+    });
+    res.status(200).send({ foundTransactions, userName, sumOfExpenses });
   } catch (err) {
     next(err);
   }
