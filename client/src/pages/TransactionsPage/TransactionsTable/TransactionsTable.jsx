@@ -12,7 +12,6 @@ function TransactionsTable(props) {
   let { isFetching, error, transactions, userName } = useSelector(
     ({ transactionsList }) => transactionsList
   );
-  console.log('TABLE', props.selectedDate);
   const { get } = bindActionCreators({ get: getTransactions }, dispatch);
 
   if (props.selectedDate) {
@@ -26,13 +25,12 @@ function TransactionsTable(props) {
   }, []);
 
   return (
-    <>
+    <div className={styles.tableResults}>
       {error && <div> ERROR</div>}
       {isFetching && <SpinnerLoader />}
       {!isFetching && !error && !transactions.length && (
         <div> No Transactions </div>
       )}
-      console.log('selectedDate', selectedDate);
       {!isFetching && !error && transactions.length && (
         <table className={styles.table}>
           <caption> Transactions </caption>
@@ -90,7 +88,9 @@ function TransactionsTable(props) {
             </p>
           </div>
         )}
-    </>
+    </div>
   );
 }
 export default TransactionsTable;
+
+
