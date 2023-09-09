@@ -5,17 +5,30 @@ import { format } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import styles from './TransactionsTable.module.sass';
+import CONSTANTS from '../../../constants'
 
 
-function TransactionsTable(props) {
+function TransactionsTable({selectedDate}) {
   const dispatch = useDispatch();
-  let { isFetching, error, transactions, userName, sumOfExpenses } =
-    useSelector(({ transactionsList }) => transactionsList);
+  let {
+    transactionsList: {
+      isFetching,
+      error,
+      transactions,
+      userName,
+      sumOfExpenses,
+    },
+    userStore: {
+      data: { role },
+    },
+  } = useSelector(
+    ({ transactionsList, userStore }) => ({transactionsList, userStore})
+  );
   const { get } = bindActionCreators({ get: getTransactions }, dispatch);
 
-  if (props.selectedDate) {
+  if (selectedDate) {
     transactions = transactions.filter(
-      (t) => format(new Date(t.createdAt), 'dd MMM yyyy') === props.selectedDate
+      (t) => format(new Date(t.createdAt), 'dd MMM yyyy') === selectedDate
     );
   }
   useEffect(() => {
@@ -71,7 +84,7 @@ function TransactionsTable(props) {
           </tfoot>
         </table>
       )}
-      {sumOfExpenses>300 && (
+      {role === CONSTANTS.CUSTOMER && sumOfExpenses > 300 && (
         <div className={styles.congrats}>
           <p>
             {userName}, congratulations, create the next contest within 3 days
