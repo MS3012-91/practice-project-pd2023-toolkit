@@ -1,41 +1,48 @@
 import { React, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTransactions, setTransactionsOnPageCount } from '../../../store/slices/transactionsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from '@reduxjs/toolkit';
+import {
+  getTransactions,
+  setTransactionsOnPageCount,
+} from '../../../store/slices/transactionsSlice';
 
-console.log('setTransactionsOnPageCount', {setTransactionsOnPageCount});
 
 function TransactionsCountFilter() {
   const dispatch = useDispatch();
-  let { transactions } = useSelector(
-    ({ transactionsList }) => transactionsList
-    );
-    
 
+  let {
+    transactionsList: { countPages },
+  } = useSelector(({ transactionsList}) => ({
+    transactionsList,
+  }));
+  const { get } = bindActionCreators({ get: getTransactions }, dispatch);
+
+ 
   const [transactionsOnPageCount, setTransactionsOnPageCount] = useState(2);
 
-  // const { get } = bindActionCreators(
-  //   { get: getTransactions(transactionsOnPageCount) },
-  //   dispatch
+  //  dispatch(
+  //  getTransactions({
+  //    requestData: transactionsOnPageCount,
+  //  })
   // );
-
-  useEffect(() => {
-    dispatch(getTransactions(transactionsOnPageCount));
-  }, [dispatch, transactionsOnPageCount]);
+  
+   useEffect(() => {
+     // Dispatch the initial API request when the component mounts
+     dispatch(getTransactions({ requestData: transactionsOnPageCount }));
+   }, [dispatch, transactionsOnPageCount]);
+ 
 
   const handleCountChange = (e) => {
     const newTransactionsOnPageCount = parseInt(e.target.value, 10);
     setTransactionsOnPageCount(newTransactionsOnPageCount);
-    dispatch(setTransactionsOnPageCount(newTransactionsOnPageCount));
+    dispatch(getTransactions({ requestData: newTransactionsOnPageCount }));
   };
-  const transactionsCount = transactions.length;
-  const paginationPagesCount = Math.ceil(
-    transactionsCount / transactionsOnPageCount
-  );
 
-  console.log('paginationPagesCount', paginationPagesCount);
+  const pages = Array.from({ length: countPages }, (_, index) => index + 1);
+  console.log('pages', pages)
 
   return (
+    <>
     <form>
       <label htmlFor="transactions"> Transactions count:</label>
       <select
@@ -48,8 +55,14 @@ function TransactionsCountFilter() {
         <option value="5">5</option>
         <option value="10">10</option>
       </select>
-    </form>
+      </form>
+      <ul>
+      {for (let i=0; i<countPages; i++) {
+      <li key = {i}> <button type = 'button'>{i} </button></li>
+  }}</ul>
+    </>
   );
 }
+
 
 export default TransactionsCountFilter;

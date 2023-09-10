@@ -84,7 +84,9 @@ function TransactionsTable({selectedDate}) {
           </tfoot>
         </table>
       )}
-      {role === CONSTANTS.CUSTOMER && sumOfExpenses > 300 && (
+      {/* role === CONSTANTS.CUSTOMER && */}
+       { sumOfExpenses > 300 &&
+        (
         <div className={styles.congrats}>
           <p>
             {userName}, congratulations, create the next contest within 3 days

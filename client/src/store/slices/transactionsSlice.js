@@ -12,10 +12,10 @@ const TRANSACTIONS_SLICE_NAME = 'transactions';
 const initialState = {
   isFetching: false,
   error: null,
+  transactionsOnPageCount: 2,
   transactions: [],
   userName: null,
   sumOfExpenses: 0,
-  transactionsOnPageCount: 2
 };
 
 export const getTransactions = decorateAsyncThunk({
@@ -31,11 +31,11 @@ const extraReducers = createExtraReducers({
   thunk: getTransactions,
   pendingReducer,
   fulfilledReducer: (state, { payload }) => {
+    state.transactionsOnPageCount = payload.transactionsOnPageCount;
     state.transactions = [...payload.foundTransactions];
     state.userName = payload.userName;
     state.sumOfExpenses = payload.sumOfExpenses;
     state.isFetching = false;
-    state.transactionsOnPageCount = payload;
   },
   rejectedReducer,
 });
@@ -44,10 +44,17 @@ const transactionSlice = createSlice({
   name: TRANSACTIONS_SLICE_NAME,
   initialState,
   extraReducers,
+  reducers: {
+    setTransactionsOnPageCount:
+      (state, { payload }) => {
+        state.transactionsOnPageCount = payload
+      }
+  },
 });
+
 
 const { actions, reducer } = transactionSlice;
 
-export const { setTransactionsOnPageCount } = actions;
+export const {setTransactionsOnPageCount } = actions;
 
 export default reducer;
