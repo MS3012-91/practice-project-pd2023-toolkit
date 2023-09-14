@@ -8,10 +8,6 @@ function TransactionsDateFilter({ selectedDate, handleSelectDate }) {
   let { transactions } = useSelector(
     ({ transactionsList }) => transactionsList
   );
-
-  console.log('props', {
-    selectedDate,
-  });
   const [isListVisible, setIsListVisible] = useState(false);
 
   //const [selectedDate, setSelectedDate] = useState(null);
