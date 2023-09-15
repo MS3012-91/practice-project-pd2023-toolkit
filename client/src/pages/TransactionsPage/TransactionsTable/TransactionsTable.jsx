@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { getTransactions } from '../../../store/slices/transactionsSlice';
+import React from 'react';
 import SpinnerLoader from '../../../components/Spinner/Spinner';
 import { format } from 'date-fns';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 import styles from './TransactionsTable.module.sass';
-import CONSTANTS from '../../../constants'
+import CONSTANTS from '../../../constants';
 
-
-function TransactionsTable({selectedDate}) {
-  const dispatch = useDispatch();
+function TransactionsTable({ selectedDate }) {
   let {
     transactionsList: {
       isFetching,
@@ -21,19 +17,17 @@ function TransactionsTable({selectedDate}) {
     userStore: {
       data: { role },
     },
-  } = useSelector(
-    ({ transactionsList, userStore }) => ({transactionsList, userStore})
-  );
-  const { get } = bindActionCreators({ get: getTransactions }, dispatch);
+  } = useSelector(({ transactionsList, userStore }) => ({
+    transactionsList,
+    userStore,
+  }));
 
   if (selectedDate) {
     transactions = transactions.filter(
       (t) => format(new Date(t.createdAt), 'dd MMM yyyy') === selectedDate
     );
   }
-  useEffect(() => {
-    get();
-  }, []);
+
   return (
     <div className={styles.tableResults}>
       {error && <div> ERROR</div>}
@@ -84,9 +78,7 @@ function TransactionsTable({selectedDate}) {
           </tfoot>
         </table>
       )}
-      {/* role === CONSTANTS.CUSTOMER && */}
-       { sumOfExpenses > 300 &&
-        (
+      {role === CONSTANTS.CUSTOMER && sumOfExpenses > 300 && (
         <div className={styles.congrats}>
           <p>
             {userName}, congratulations, create the next contest within 3 days
@@ -98,5 +90,3 @@ function TransactionsTable({selectedDate}) {
   );
 }
 export default TransactionsTable;
-
-

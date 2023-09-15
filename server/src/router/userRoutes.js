@@ -4,10 +4,7 @@ const validators = require('../middlewares/validators');
 const userController = require('../controllers/userController');
 const checkToken = require('../middlewares/checkToken');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
-const paginationMiddlware = require('../middlewares/paginationMaddlware');
 const upload = require('../utils/fileUpload');
-const { queryParser } = require('../middlewares/queryParser');
-const db = require('../models');
 const userRouter = Router();
 
 userRouter.post(
@@ -32,7 +29,6 @@ userRouter.post(
 userRouter.get(
   '/id/transactions',
   checkToken.checkToken,
-  //paginationMiddlware(db.Transactions, userId),
   userController.getTransactions
 );
 

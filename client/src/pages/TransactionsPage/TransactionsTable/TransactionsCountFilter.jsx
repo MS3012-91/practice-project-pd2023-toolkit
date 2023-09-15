@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from '@reduxjs/toolkit';
 import {
   getTransactions,
-  setTransactionsOnPageCount,
 } from '../../../store/slices/transactionsSlice';
+import styles from './TransactionsCountFilter.module.sass';
 
 function TransactionsCountFilter() {
   const dispatch = useDispatch();
@@ -17,18 +16,13 @@ function TransactionsCountFilter() {
 
   const [transactionsOnPageCount, setTransactionsOnPageCount] = useState(() => {
     const storedValue = localStorage.getItem('transactionsOnPageCount');
-    console.log('storedValue1', storedValue);
     return storedValue ? storedValue : 2;
   });
 
   const [transactionPage, setTransactionPage] = useState(() => {
     const storedValue = localStorage.getItem('transactionPage');
-    console.log('storedValue2', storedValue);
     return storedValue ? storedValue : 1;
   });
-
-  console.log('transactionPage', transactionPage);
-  console.log('transactionsOnPageCount', transactionsOnPageCount);
 
   useEffect(() => {
     dispatch(
@@ -41,17 +35,34 @@ function TransactionsCountFilter() {
 
   useSelector((state) => state.transactionsOnPageCount);
   useSelector((state) => state.transactionPage);
+  console.log('transactionPage', transactionPage);
 
   const handleCountChange = (e) => {
-    setTransactionsOnPageCount(e.target.value);
-    localStorage.setItem('transactionsOnPageCount', e.target.value || 2);
+    const currentCount = Number(e.target.value);
+    setTransactionsOnPageCount(currentCount);
+    setTransactionPage(1);
+    localStorage.setItem('transactionsOnPageCount', currentCount || 2);
+    localStorage.setItem('transactionPage', 1);
   };
 
   const handlePageChange = (e) => {
-    setTransactionPage(e.target.value);
-    console.log('e.target.value', e.target.value);
-    localStorage.setItem('transactionPage', e.target.value || 1);
+    const newPage = Number(e.target.value);
+    setTransactionPage(newPage);
+    localStorage.setItem('transactionPage', newPage || 1);
   };
+
+  const handlePageNextPage = () => {
+    const nextPage = Number(localStorage.getItem('transactionPage')) + 1;
+    setTransactionPage(nextPage);
+    localStorage.setItem('transactionPage', nextPage);
+  };
+
+    const handlePagePrevPage = () => {
+      const prevPage = Number(localStorage.getItem('transactionPage')) - 1;
+      setTransactionPage(prevPage);
+      console.log('prevPage', prevPage);
+      localStorage.setItem('transactionPage', prevPage);
+    };
 
   const pages = Array.from({ length: countPages }, (_, index) => index + 1);
 
@@ -71,13 +82,40 @@ function TransactionsCountFilter() {
         </select>
       </form>
       <ul>
+        {countPages > 1 && (
+          <li>
+            <button
+              type="button"
+              onClick={handlePagePrevPage}
+              disabled={transactionPage <= 1}
+            >
+              &laquo;
+            </button>
+          </li>
+        )}
         {pages.map((page) => (
           <li key={page}>
-            <button type="button" onClick={handlePageChange} value={page}>
+            <button
+              type="button"
+              onClick={handlePageChange}
+              value={page}
+              className={page === transactionPage ? styles.active : ''}
+            >
               {page}
             </button>
           </li>
         ))}
+        {countPages > 1 && (
+          <li>
+            <button
+              type="button"
+              onClick={handlePageNextPage}
+              disabled={transactionPage >= countPages}
+            >
+              &raquo;
+            </button>
+          </li>
+        )}
       </ul>
     </>
   );

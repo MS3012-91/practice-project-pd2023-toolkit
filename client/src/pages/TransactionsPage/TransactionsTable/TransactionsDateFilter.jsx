@@ -1,16 +1,13 @@
-import { React, useState } from 'react';
+import { React, useState} from 'react';
 import { format } from 'date-fns';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from './TransactionsDateFilter.module.sass';
 
 function TransactionsDateFilter({ selectedDate, handleSelectDate }) {
-  const dispatch = useDispatch();
   let { transactions } = useSelector(
     ({ transactionsList }) => transactionsList
   );
   const [isListVisible, setIsListVisible] = useState(false);
-
-  //const [selectedDate, setSelectedDate] = useState(null);
   const [selectDateActive, setSelectDateActive] = useState(false);
   const [selectAllActive, setSelectAllActive] = useState(false);
 
@@ -50,11 +47,12 @@ function TransactionsDateFilter({ selectedDate, handleSelectDate }) {
       {isListVisible && (
         <ul className={styles.dateList}>
           {uniqueDate.map((d) => (
-              <li
+            <li
               key={d}
               onClick={() => handleSelectDate(d)}
               className={d === selectedDate ? styles.selectedDate : ''}
-            > {d}
+            >
+              {d}
             </li>
           ))}
         </ul>

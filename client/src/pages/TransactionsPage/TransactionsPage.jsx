@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import TransactionsTable from './TransactionsTable/TransactionsTable.jsx';
@@ -16,13 +15,12 @@ function TransactionsPage() {
   return (
     <div className={styles.transactionsPage}>
       <Header />
-      <TransactionsCountFilter />
-      <div className={styles.transactionsPageBody}>
-        <TransactionsDateFilter
-          handleSelectDate={handleSelectDate}
-          selectedDate={selectedDate}
-        />
+    <div className={styles.transactionsPageBody}>
+      <TransactionsDateFilter handleSelectDate={handleSelectDate} />
+      <div className={styles.table}>
         <TransactionsTable selectedDate={selectedDate} />
+        <TransactionsCountFilter />
+        </div>
       </div>
       <Footer />
     </div>

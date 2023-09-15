@@ -271,14 +271,12 @@ module.exports.cashout = async (req, res, next) => {
 };
 
 module.exports.getTransactions = async (req, res, next) => {
-  //! при обновлении данных нужно настроить подгрузку из локального хранилища, чтобы сократить количество запросов на сервер
+  const limit = req.query.limit;
+  const page = req.query.page;
+  const { userId } = req.tokenData;
+  console.log('limit', limit);
+  const offset = (page - 1) * limit;
   try {
-    const { userId } = req.tokenData;
-    const limit = req.query.limit;
-    const page = req.query.page;
-    console.log('page', page);
-    console.log('limit', limit);
-
     const user = await db.Users.findOne({
       raw: true,
       where: { id: userId },
@@ -288,9 +286,6 @@ module.exports.getTransactions = async (req, res, next) => {
       return res.status(404).send({ error: 'User not found' });
     }
     const userName = user.displayName;
-
-    const offset = (page - 1) * limit;
-    console.log('offset', offset);
     const countFoundTransactions = await db.Transactions.count({
       raw: true,
       where: { userId },
@@ -299,7 +294,6 @@ module.exports.getTransactions = async (req, res, next) => {
     if (!countFoundTransactions) {
       return res.status(404).send('No transactions');
     }
-    console.log('countfoundTransactions', countFoundTransactions);
     const foundTransactions = await db.Transactions.findAll({
       raw: true,
       where: { userId },
@@ -311,7 +305,6 @@ module.exports.getTransactions = async (req, res, next) => {
       return res.status(404).send('No transactions');
     }
     const countPages = Math.ceil(countFoundTransactions / limit);
-    console.log('countPages', countPages);
     const threeDaysAgo = new Date();
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
     const sumOfExpenses = await db.Transactions.sum('amount', {

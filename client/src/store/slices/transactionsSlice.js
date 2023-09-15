@@ -33,7 +33,6 @@ const extraReducers = createExtraReducers({
   thunk: getTransactions,
   pendingReducer,
   fulfilledReducer: (state, { payload }) => {
-    state.transactionsOnPageCount = payload.transactionsOnPageCount;
     state.transactions = [...payload.foundTransactions];
     state.userName = payload.userName;
     state.sumOfExpenses = payload.sumOfExpenses;
@@ -47,21 +46,8 @@ const transactionSlice = createSlice({
   name: TRANSACTIONS_SLICE_NAME,
   initialState,
   extraReducers,
-  // reducers: {
-  //   setTransactionsOnPageCount: (state, { payload }) => {
-  //     state.transactionsOnPageCount = payload !== '' ? payload : state.transactionsOnPageCount
-  //   },
-
-  //   setTransactionPage: (state, { payload }) => {
-  //     state.transactionPage =
-  //       payload !== 'undefined' ? payload : state.transactionPage;
-  //   },
-  // },
 });
 
-
 const { reducer } = transactionSlice;
-
-// export const { setTransactionsOnPageCount, setTransactionPage } = actions;
 
 export default reducer;
