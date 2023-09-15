@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Header from '../../components/Header/Header';
 import styles from './UserProfile.module.sass';
@@ -45,6 +46,19 @@ const UserProfile = (props) => {
             >
               UserInfo
             </div>
+            <div
+              className= {classNames(styles.optionContainer, {
+                [styles.currentOption]:
+                  profileViewMode === CONSTANTS.TRANSACTIONS_MODE,
+              })}
+              onClick={
+                () => changeProfileViewMode(CONSTANTS.TRANSACTIONS_MODE)
+              }
+            >
+              <Link to="/transactions" className = {styles.link}> Transactions</Link>
+             
+            </div>
+
             {role === CONSTANTS.CREATOR && (
               <div
                 className={classNames(styles.optionContainer, {

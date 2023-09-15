@@ -5,7 +5,6 @@ const userController = require('../controllers/userController');
 const checkToken = require('../middlewares/checkToken');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const upload = require('../utils/fileUpload');
-
 const userRouter = Router();
 
 userRouter.post(
@@ -27,7 +26,10 @@ userRouter.post(
   userController.payment
 );
 
-userRouter.get('/id/transactions', checkToken.checkToken, userController.getTransactions
+userRouter.get(
+  '/id/transactions',
+  checkToken.checkToken,
+  userController.getTransactions
 );
 
 userRouter.post(
