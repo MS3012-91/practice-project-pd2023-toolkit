@@ -15,57 +15,45 @@ function TransactionsCountFilter() {
     transactionsList,
   }));
 
-
-  const { get } = bindActionCreators({ get: getTransactions }, dispatch);
-
   const [transactionsOnPageCount, setTransactionsOnPageCount] = useState(() => {
     const storedValue = localStorage.getItem('transactionsOnPageCount');
     console.log('storedValue1', storedValue);
-    return storedValue ? JSON.parse(storedValue) : '2';
+    return storedValue ? storedValue : 2;
   });
 
-  // const [transactionPage, setTransactionPage] = useState(() => {
-  //   const storedValue = localStorage.getItem('transactionPage');
-  //   console.log('storedValue2', storedValue);
-  //   //return storedValue ? JSON.parse(storedValue) : '1';
-  // });
+  const [transactionPage, setTransactionPage] = useState(() => {
+    const storedValue = localStorage.getItem('transactionPage');
+    console.log('storedValue2', storedValue);
+    return storedValue ? storedValue : 1;
+  });
 
+  console.log('transactionPage', transactionPage);
   console.log('transactionsOnPageCount', transactionsOnPageCount);
 
   useEffect(() => {
-    // Dispatch the initial API request when the component mounts
-    localStorage.setItem(
-      'transactionsOnPageCount',
-      JSON.stringify(transactionsOnPageCount)
-    );
-
-   // localStorage.setItem('transactionPage', JSON.stringify(transactionPage));
     dispatch(
       getTransactions({
-        requestData:  transactionsOnPageCount
+        limit: transactionsOnPageCount,
+        page: transactionPage,
       })
     );
-  }, [dispatch, transactionsOnPageCount]);
+  }, [dispatch, transactionsOnPageCount, transactionPage]);
 
   useSelector((state) => state.transactionsOnPageCount);
-  // useSelector((state) => state.transactionPage);
+  useSelector((state) => state.transactionPage);
 
   const handleCountChange = (e) => {
     setTransactionsOnPageCount(e.target.value);
-    dispatch(
-      getTransactions({
-        requestData: e.target.value || transactionsOnPageCount,
-      })
-    );
+    localStorage.setItem('transactionsOnPageCount', e.target.value || 2);
   };
 
-  // const handlePageChange = (e) => {
-  //   setTransactionPage(e.target.value);
-  //   //localStorage.setItem('transactionsPage', JSON.stringify(e.target.value));
-  //   dispatch(getTransactions({ requestData: { page: e.target.value } }));
-  // };
+  const handlePageChange = (e) => {
+    setTransactionPage(e.target.value);
+    console.log('e.target.value', e.target.value);
+    localStorage.setItem('transactionPage', e.target.value || 1);
+  };
 
-  const pages = Array.from({ length: countPages}, (_, index) => index + 1);
+  const pages = Array.from({ length: countPages }, (_, index) => index + 1);
 
   return (
     <>
@@ -85,8 +73,8 @@ function TransactionsCountFilter() {
       <ul>
         {pages.map((page) => (
           <li key={page}>
-            <button type="button" >
-              {page}{' '}
+            <button type="button" onClick={handlePageChange} value={page}>
+              {page}
             </button>
           </li>
         ))}
