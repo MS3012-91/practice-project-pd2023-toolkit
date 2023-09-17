@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/public', express.static('public'));
+console.log('server is listen');
 app.use(router);
 app.use(handlerError);
 
