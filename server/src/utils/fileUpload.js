@@ -14,13 +14,17 @@ if (!fs.existsSync(filePath)) {
     recursive: true,
   });
 }
+console.log('devFilePath', devFilePath);
+console.log('filePath', filePath);
 
 const storageContestFiles = multer.diskStorage({
   destination (req, file, cb) {
     cb(null, filePath);
+    console.log('storageContestFiles', file);
   },
   filename (req, file, cb) {
     cb(null, Date.now() + file.originalname);
+    console.log('filecd', file)
   },
 });
 
@@ -44,7 +48,8 @@ module.exports.uploadAvatar = (req, res, next) => {
 };
 
 module.exports.uploadContestFiles = (req, res, next) => {
-  uploadContestFiles(req, res, (err) => {
+  uploadContestFiles(req, res, (err) =>
+  {
     if (err instanceof multer.MulterError) {
       next(new ServerError());
     } else if (err) {
@@ -56,6 +61,7 @@ module.exports.uploadContestFiles = (req, res, next) => {
 
 module.exports.updateContestFile = (req, res, next) => {
   updateContestFile(req, res, (err) => {
+    console.log('uploadContestFiles', req);
     if (err instanceof multer.MulterError) {
       next(new ServerError());
     } else if (err) {

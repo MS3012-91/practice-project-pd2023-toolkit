@@ -99,14 +99,24 @@ module.exports.downloadFile = async (req, res, next) => {
 };
 
 module.exports.updateContest = async (req, res, next) => {
-  const { body, file } = req;
+  console.log('req.body', req.body);
+  console.log('req', req);
+ // const file = req.body.file;
+ // console.log('file', file);
+  try {
+    if (req.file) {
+      console.log('req.file', req.file);
+    }
+  } catch (err) {
+    next(err);
+  }
+
+  // const { body, file } = req;
   if (req.file) {
     body.fileName = req.file.filename;
+    console.log('body.fileName', body.fileName);
     body.originalFileName = req.file.originalname;
   }
-  console.log('req.file', req);
-  console.log('req.params', req.params);
-  console.log('req.body', req.body);
   const contestId = req.body.contestId;
   console.log('contestId', contestId);
   delete req.body.contestId;
@@ -120,6 +130,30 @@ module.exports.updateContest = async (req, res, next) => {
     next(e);
   }
 };
+
+// module.exports.updateContest = async (req, res, next) => {
+//   const { body, file } = req;
+//   console.log('req', req);
+//   if (req.file) {
+//     body.fileName = req.file.filename;
+//     body.originalFileName = req.file.originalname;
+//   }
+//   console.log('req.file', req.file);
+//   console.log('req.params', req.params);
+//   console.log('req.body', req.body);
+//   const contestId = req.body.contestId;
+//   console.log('contestId', contestId);
+//   delete req.body.contestId;
+//   try {
+//     const updatedContest = await contestQueries.updateContest(req.body, {
+//       id: contestId,
+//       userId: req.tokenData.userId,
+//     });
+//     res.send(updatedContest);
+//   } catch (e) {
+//     next(e);
+//   }
+// };
 
 module.exports.setNewOffer = async (req, res, next) => {
   const obj = {};

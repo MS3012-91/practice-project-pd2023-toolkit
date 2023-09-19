@@ -32,24 +32,17 @@ contestRouter.get(
   basicMiddlewares.canGetContest,
   contestController.getContestById
 );
-// POST /contest/:id
+//POST /contest/:id
 contestRouter.get(
   '/downloadFile/:fileName',
   contestController.downloadFile
 );
 
 // PATCH /contest/:id 
-contestRouter.patch(
-  '/updateContest',
-  upload.updateContestFile,
-  contestController.updateContest
-);
-//POST /contest/
 contestRouter.post(
-  '/setNewOffer',
-  upload.uploadLogoFiles,
-  basicMiddlewares.canSendOffer,
-  contestController.setNewOffer
+  '/updateContest',
+  //upload.updateContestFile,
+  contestController.updateContest
 );
 //PATCH contest/:id
 contestRouter.post(
