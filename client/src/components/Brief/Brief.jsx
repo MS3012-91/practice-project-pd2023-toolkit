@@ -14,15 +14,23 @@ import Error from '../Error/Error';
 const Brief = (props) => {
   const setNewContestData = (values) => {
     const data = new FormData();
+       const updatedData = {};
     Object.keys(values).forEach((key) => {
-      if (key !== 'file' && values[key]) data.append(key, values[key]);
-    });
+      if (key !== 'file' && values[key] !== props.contestData[key])         
+       { data.append(key, values[key]);
+      updatedData[key] = values[key];}
+    }
+  );
     if (values.file instanceof File) {
       data.append('file', values.file);
-      console.log('values.file', values.file);
     }
+   
     data.append('contestId', props.contestData.id);
-    props.update(data);
+
+     if (Object.keys(updatedData).length === 0) {
+       console.log('Нет изменений в данных. Запрос не отправлен.');
+       return;
+    } else {props.update(data);}
   };
 
   const getContestObjInfo = () => {
