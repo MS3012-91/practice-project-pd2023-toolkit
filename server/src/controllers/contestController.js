@@ -12,7 +12,6 @@ module.exports.dataForContest = async (req, res, next) => {
     const {
       body: { characteristic1, characteristic2 },
     } = req;
-    console.log(req.body, characteristic1, characteristic2);
     const types = [characteristic1, characteristic2, 'industry'].filter(
       Boolean
     );
@@ -98,62 +97,27 @@ module.exports.downloadFile = async (req, res, next) => {
   res.download(file);
 };
 
-module.exports.updateContest = async (req, res, next) => {
-  console.log('req.body', req.body);
-  console.log('req', req);
- // const file = req.body.file;
- // console.log('file', file);
-  try {
-    if (req.file) {
-      console.log('req.file', req.file);
-    }
-  } catch (err) {
-    next(err);
-  }
 
-  // const { body, file } = req;
-  if (req.file) {
-    body.fileName = req.file.filename;
-    console.log('body.fileName', body.fileName);
-    body.originalFileName = req.file.originalname;
+module.exports.updateContest = async (req, res, next) => {
+  const { body, file, tokenData } = req;
+  const { userId } = tokenData;
+  const { contestId } = body;
+
+  if (file) {
+    body.fileName = file.filename;
+    body.originalFileName = file.originalname;
   }
-  const contestId = req.body.contestId;
-  console.log('contestId', contestId);
   delete req.body.contestId;
   try {
-    const updatedContest = await contestQueries.updateContest(req.body, {
+    const updatedContest = await contestQueries.updateContest(body, {
       id: contestId,
-      userId: req.tokenData.userId,
+      userId
     });
     res.send(updatedContest);
   } catch (e) {
     next(e);
   }
 };
-
-// module.exports.updateContest = async (req, res, next) => {
-//   const { body, file } = req;
-//   console.log('req', req);
-//   if (req.file) {
-//     body.fileName = req.file.filename;
-//     body.originalFileName = req.file.originalname;
-//   }
-//   console.log('req.file', req.file);
-//   console.log('req.params', req.params);
-//   console.log('req.body', req.body);
-//   const contestId = req.body.contestId;
-//   console.log('contestId', contestId);
-//   delete req.body.contestId;
-//   try {
-//     const updatedContest = await contestQueries.updateContest(req.body, {
-//       id: contestId,
-//       userId: req.tokenData.userId,
-//     });
-//     res.send(updatedContest);
-//   } catch (e) {
-//     next(e);
-//   }
-// };
 
 module.exports.setNewOffer = async (req, res, next) => {
   const obj = {};
@@ -341,7 +305,6 @@ module.exports.getAllContests = async (req, res, next) => {
       industry,
       awardSort
     );
-    console.log('predicates', predicates);
     const contests = await db.Contests.findAll({
       where: predicates.where,
       order: predicates.order,
@@ -356,12 +319,10 @@ module.exports.getAllContests = async (req, res, next) => {
         },
       ],
     });
-    console.log('contests', contests);
     contests.forEach(
       (contest) => (contest.dataValues.count = contest.dataValues.Offers.length)
     );
     const haveMore = contests.length > 0;
-    console.log('haveMore', haveMore);
     res.send({ contests, haveMore });
   } catch (err) {
     next(new ServerError(err));

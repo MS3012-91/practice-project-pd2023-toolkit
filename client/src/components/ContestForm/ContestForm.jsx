@@ -72,7 +72,7 @@ class ContestForm extends React.Component {
               industry: '',
               focusOfWork: '',
               targetCustomer: '',
-              file: null,
+              file: '',
               ...variableOptions[this.props.contestType],
               ...this.props.initialValues,
             }}
@@ -82,7 +82,7 @@ class ContestForm extends React.Component {
             enableReinitialize
           >
             {({ values, formikProps, setFieldValue }) => (
-              <Form encType="multipart/form-data" method="post">
+              <Form>
                 <div className={styles.inputContainer}>
                   <span className={styles.inputHeader}>Title of contest</span>
                   <FormInput
@@ -141,7 +141,6 @@ class ContestForm extends React.Component {
                 </div>
                 <OptionalSelects {...this.props} />
                 <FieldFileInput
-                  type="file"
                   name="file"
                   classes={{
                     fileUploadContainer: styles.fileUploadContainer,
@@ -150,6 +149,7 @@ class ContestForm extends React.Component {
                     fileInput: styles.fileInput,
                     warning: styles.warning,
                   }}
+                  type="file"
                   formikProps={{ values, setFieldValue }}
                   setFieldValue={setFieldValue}
                 />

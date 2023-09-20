@@ -60,7 +60,6 @@ function TransactionsCountFilter() {
     const handlePagePrevPage = () => {
       const prevPage = Number(localStorage.getItem('transactionPage')) - 1;
       setTransactionPage(prevPage);
-      console.log('prevPage', prevPage);
       localStorage.setItem('transactionPage', prevPage);
     };
 

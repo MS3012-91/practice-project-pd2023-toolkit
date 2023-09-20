@@ -1,11 +1,9 @@
 const db = require('../../models');
 const ServerError = require('../../errors/ServerError');
 
-module.exports.updateContest = async (data, predicate, transaction) => {
-  console.log('data', data);
+module.exports.updateContest = async (data, predicate, contestId, transaction) => {
   const [updatedCount, [updatedContest]] = await db.Contests.update(data,
     { where: predicate, returning: true, transaction });
-  console.log('updatedContest', updatedContest);
   if (updatedCount !== 1) {
     throw new ServerError('cannot update Contest');
   } else {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -12,19 +12,29 @@ import ContestInfo from '../Contest/ContestInfo/ContestInfo';
 import Error from '../Error/Error';
 
 const Brief = (props) => {
-  console.log('props', props);
+
   const setNewContestData = (values) => {
-    const data = new FormData();
-    Object.keys(values).forEach((key) => {      
-      if (key !== 'file' && values[key]) data.append(key, values[key]);
-      if (key === 'file') {
-        data.append('file', values.file);
-        console.log('values.file', values.file); //корректно
+    const formData = new FormData();
+     const updatedData = {};
+    Object.keys(values).forEach((key) => {
+      if (key !== 'file' && values[key] !== props.contestData[key]) {
+        formData.append(key, values[key]);
+        updatedData[key] = values[key];
       }
     });
-    data.append('contestId', props.contestData.id);
-    console.log('Data to be sent:', data); //формдата
-    props.contestData.update(data);
+    if (values.file instanceof File) {
+      formData.append('file', values.file);
+      updatedData['file'] = values['file'];
+    }
+
+    formData.append('contestId', props.contestData.id);
+
+    if (Object.keys(updatedData).length === 0) {
+      console.log('Нет изменений в данных. Запрос не отправлен.');
+      return;
+    } else {
+      props.update(formData);
+    }
   };
 
   const getContestObjInfo = () => {
@@ -117,7 +127,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  update: (data) => dispatch(updateContest(data)),
+  update: (formData) => dispatch(updateContest(formData)),
   changeEditContest: (data) => dispatch(changeEditContest(data)),
   clearContestUpdationStore: () => dispatch(clearContestUpdationStore()),
 });

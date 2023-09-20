@@ -18,7 +18,8 @@ const initialState = {
 export const updateContest = decorateAsyncThunk({
   key: CONTEST_UPDATION_SLICE_NAME,
   thunk: async (payload, { dispatch }) => {
-    const { data } = await restController.updateContest(payload);
+    const contestId = payload.get('contestId');
+    const { data } = await restController.updateContest(payload, contestId);
     dispatch(updateStoreAfterUpdateContest(data));
   },
 });

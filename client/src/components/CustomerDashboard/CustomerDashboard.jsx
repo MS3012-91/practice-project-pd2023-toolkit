@@ -12,7 +12,6 @@ import ContestBox from '../ContestBox/ContestBox';
 import styles from './CustomerDashboard.module.sass';
 import TryAgain from '../TryAgain/TryAgain';
 
-console.log('clearContestsList', clearContestsList);
 class CustomerDashboard extends React.Component {
   loadMore = startFrom => {
     this.props.getContests({
