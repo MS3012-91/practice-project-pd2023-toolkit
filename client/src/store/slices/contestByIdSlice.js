@@ -134,7 +134,7 @@ const reducers = {
   updateStoreAfterUpdateContest: (state, { payload }) => {
     state.error = null;
     state.isEditContest = false;
-    state.contestData = { ...state.contestData, ...payload };
+    state.contestData = { ...state.contestData, ...state.contestId, ...payload };
   },
   changeContestViewMode: (state, { payload }) => {
     state.isEditContest = false;

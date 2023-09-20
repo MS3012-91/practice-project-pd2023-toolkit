@@ -39,8 +39,8 @@ contestRouter.get(
 );
 
 // PATCH /contest/:id 
-contestRouter.post(
-  '/updateContest',
+contestRouter.patch(
+  '/:contestId/updateContest',
   upload.updateContestFile,
   contestController.updateContest
 );

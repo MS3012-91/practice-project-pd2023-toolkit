@@ -10,7 +10,7 @@ module.exports.dataForContest = async (req, res, next) => {
   const response = {};
   try {
     const { body: { characteristic1, characteristic2 } } = req;
-    console.log(req.body, characteristic1, characteristic2);
+    //console.log(req.body, characteristic1, characteristic2);
     const types = [characteristic1, characteristic2, 'industry'].filter(Boolean);
 
     const characteristics = await db.Selects.findAll({
@@ -105,14 +105,12 @@ module.exports.downloadFile = async (req, res, next) => {
 };
 
 module.exports.updateContest = async (req, res, next) => {
-  console.log('req.file', req.file);
+  //console.log('req.headers', req.headers);
   if (req.file) {
     req.body.fileName = req.file.filename;
     req.body.originalFileName = req.file.originalname;
   }
   const contestId = req.body.contestId;
-  console.log('contestId', contestId);
-  console.log('req.body.', req.body);
   delete req.body.contestId;
   try {
     const updatedContest = await contestQueries.updateContest(req.body, {

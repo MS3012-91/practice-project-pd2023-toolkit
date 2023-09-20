@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -11,27 +11,35 @@ import styles from './Brief.module.sass';
 import ContestInfo from '../Contest/ContestInfo/ContestInfo';
 import Error from '../Error/Error';
 
+
 const Brief = (props) => {
+  const [contestId, setContestId] = useState(); 
+
+  useEffect(() => {
+    setContestId(props.contestData.id);
+  }, [props.contestData.id]);
+
   const setNewContestData = (values) => {
-    const data = new FormData();
+    const formData = new FormData();
        const updatedData = {};
     Object.keys(values).forEach((key) => {
       if (key !== 'file' && values[key] !== props.contestData[key])         
-       { data.append(key, values[key]);
+       { formData.append(key, values[key]);
       updatedData[key] = values[key];}
     }
   );
     if (values.file instanceof File) {
-      data.append('file', values.file);
+      formData.append('file', values.file);
     }
    
-    data.append('contestId', props.contestData.id);
+    formData.append('contestId', props.contestData.id);
 
      if (Object.keys(updatedData).length === 0) {
        console.log('Нет изменений в данных. Запрос не отправлен.');
        return;
-    } else {props.update(data);}
+    } else {props.update(formData, contestId);}
   };
+
 
   const getContestObjInfo = () => {
     const {
@@ -119,7 +127,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  update: (data) => dispatch(updateContest(data)),
+  update: (formData, contestId) => {
+    console.log('contestId Props', contestId);
+    dispatch(updateContest(formData, contestId));
+  },
   changeEditContest: (data) => dispatch(changeEditContest(data)),
   clearContestUpdationStore: () => dispatch(clearContestUpdationStore()),
 });
