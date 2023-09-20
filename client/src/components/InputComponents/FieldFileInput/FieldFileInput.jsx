@@ -1,8 +1,9 @@
 import React from 'react';
-import { Field } from 'formik';
+import { Field, useField } from 'formik';
 
 const FieldFileInput = ({ classes, ...rest }) => {
   const { fileUploadContainer, labelClass, fileNameClass, fileInput } = classes;
+  const [field, , helpers] = useField(rest);
 
   return (
     <Field name={rest.name}>
@@ -29,6 +30,19 @@ const FieldFileInput = ({ classes, ...rest }) => {
               className={fileInput}
               id='fileInput'
               type='file'
+              value = ''
+              onChange={(e) => {
+                const file = e.target.files[0];
+                const imageType = /image.*/;
+                if (!file.type.match(imageType)) {
+                  e.target.value = '';
+                  console.log('Incorrect file type');
+                } else {
+                  console.log('Selected file:', file);
+                  helpers.setValue(e.target.files[0]);
+
+                }
+              }}
             />
           </div>
         );

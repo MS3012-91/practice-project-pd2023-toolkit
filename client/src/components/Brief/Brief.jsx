@@ -19,6 +19,7 @@ const Brief = (props) => {
     });
     if (values.file instanceof File) {
       data.append('file', values.file);
+      console.log('values.file', values.file);
     }
     data.append('contestId', props.contestData.id);
     props.update(data);
